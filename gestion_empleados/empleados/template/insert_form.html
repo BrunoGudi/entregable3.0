@@ -1,0 +1,10 @@
+{% extends 'empleados/base.html' %}
+
+{% block content %}
+    <h2>Agregar Nuevo Empleado</h2>
+    <form action="{% url 'empleados:insert' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar">
+    </form>
+{% endblock %}
