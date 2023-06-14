@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = ['/Users/MegaTecnologia/Desktop/visual/entregable3.0/gestion_empleados/empleados/templates/empleados/static']
 
 # Application definition
 
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'gestion_empleados.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/MegaTecnologia/Desktop/visual/entregable3.0/gestion_empleados/empleados/template/empleados'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

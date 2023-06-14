@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Empleados</title>
+    <link rel="stylesheet" href="{% static '/styles.css' %}">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <!-- <img class="imgNav" src="{% static '/img/personal1'}" alt="Descripción de la imagen"> -->
+            <h2 class="TituloNav">Sistema de Gestión de Empleados</h2>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="base.html">inicio</a>
+                </li>
+                <li>
+                    <a href="insert_form.html">insertar datos</a>
+                </li>
+                <li>
+                    <a href="search_form.html">buscar datos</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="clearfix"></div>
+
+        <section id="content1">
+            
+            <article class="article">
+                <h2>titulo del articulo</h2>
+                <p>parrafo del articulo</p>
+            </article>
+            
+            <article class="article">
+                <h2>titulo del articulo</h2>
+                <p>parrafo del articulo</p>
+            </article>
+            
+            <article class="article">
+                <h2>titulo del articulo</h2>
+                <p>parrafo del articulo</p>
+            </article>
+
+            <article class="article">
+                <h2>titulo del articulo</h2>
+                <p>parrafo del articulo</p>
+            </article>
+
+        </section>
+
+        <div class="clearfix"></div>
+        
+        <footer>
+            <p>Derechos de autor &copy; 2023</p>
+        </footer>
+
+        <div id="content">
+            {% block content %}
+            <!-- Contenido específico de cada página -->
+            {% endblock %}
+        </div>
+    
+
+    </div>
+
+
+</body>
+</html>

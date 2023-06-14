@@ -3,7 +3,7 @@ from .forms import EmpleadoForm
 from .models import Empleado, Gerente, Desarrollador
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'empleados/base.html')
 
 def insert(request):
     if request.method == 'POST':
@@ -44,4 +44,5 @@ def search(request):
             resultados.append(empleado)
 
     return render(request, 'empleados/search_form.html', {'term': term, 'resultados': resultados})
+
 # Create your views here.
