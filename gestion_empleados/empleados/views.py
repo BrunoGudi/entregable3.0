@@ -24,7 +24,6 @@ def insert(request):
                 empleado = Empleado(nombre=nombre, apellido=apellido, salario=salario)
 
             empleado.save()
-
             return render(request, 'empleados/success.html')
 
     else:

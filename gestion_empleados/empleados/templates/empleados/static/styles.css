@@ -31,7 +31,8 @@ nav{
 nav ul li{
   float: left;
   list-style: none;
-  margin: 10px;
+  /* margin: 10px; */
+  margin-left: 100px;
 }
 .clearfix{
   clear: both;
