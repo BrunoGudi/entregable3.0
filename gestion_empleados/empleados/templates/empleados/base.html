@@ -16,42 +16,38 @@
         <nav>
             <ul>
                 <li>
-                    <a href="base.html">inicio</a>
+                    <form action="{% url 'empleados:index' %}">
+                        <input type="submit" value="página principal" />
+                    </form>
                 </li>
                 <li>
-                    <a href="insert_form.html">insertar datos</a>
+                    <form action="{% url 'empleados:insert' %}">
+                        <input type="submit" value="insertar datos" />
+                    </form>
                 </li>
                 <li>
-                    <a href="search_form.html">buscar datos</a>
+                    <form action="{% url 'empleados:search' %}">
+                        <input type="submit" value="buscar" />
+                    </form>
                 </li>
             </ul>
         </nav>
 
         <div class="clearfix"></div>
-
-        <section id="content1">
-            
+        <div id="content">
+            {% block content %}
             <article class="article">
                 <h2>titulo del articulo</h2>
                 <p>parrafo del articulo</p>
             </article>
             
-            <article class="article">
-                <h2>titulo del articulo</h2>
-                <p>parrafo del articulo</p>
-            </article>
+            {% endblock %}
+        </div>
+
+        <!-- <section id="content1">
             
-            <article class="article">
-                <h2>titulo del articulo</h2>
-                <p>parrafo del articulo</p>
-            </article>
 
-            <article class="article">
-                <h2>titulo del articulo</h2>
-                <p>parrafo del articulo</p>
-            </article>
-
-        </section>
+        </section> -->
 
         <div class="clearfix"></div>
         
@@ -59,11 +55,7 @@
             <p>Derechos de autor &copy; 2023</p>
         </footer>
 
-        <div id="content">
-            {% block content %}
-            <!-- Contenido específico de cada página -->
-            {% endblock %}
-        </div>
+
     
 
     </div>
