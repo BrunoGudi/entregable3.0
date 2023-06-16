@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATICFILES_DIRS = ['/Users/MegaTecnologia/Desktop/visual/entregable3.0/gestion_empleados/empleados/templates/empleados/static']
+STATICFILES_DIRS = [BASE_DIR / 'empleados' / 'static',]
 
 # Application definition
 

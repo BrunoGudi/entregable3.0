@@ -9,17 +9,23 @@ class Empleado(models.Model):
         return f"{self.nombre} {self.apellido}"
 
     def obtener_salario_anual(self):
-        return self.salario * 12
+        return {self.salario}
 
 
-class Gerente(Empleado):
+class Gerente(models.Model):
+    nombre = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='gerente_nombre')
+    apellido = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='gerente_apellido')
+    salario = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='gerente_salario')
     departamento = models.CharField(max_length=100)
 
     def obtener_informacion_departamento(self):
         return f"Departamento: {self.departamento}"
 
 
-class Desarrollador(Empleado):
+class Desarrollador(models.Model):
+    nombre = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='desarrollador_nombre')
+    apellido = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='desarrollador_apellido')
+    salario = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='desarrollador_salario')
     lenguaje = models.CharField(max_length=100)
 
     def obtener_lenguaje(self):
