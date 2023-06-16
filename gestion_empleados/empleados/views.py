@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
@@ -15,7 +16,7 @@ class ListadoEmpleados(ListView):
 
 class CrearEmpleado(CreateView):
     model = Empleado
-    template_name = 'empleados/crear_empleado'
+    template_name = 'empleados/crear_empleado.html'
     success_url = reverse_lazy('listado_empleados')
     fields = 'nombre', 'apellido', 'salario'
 
