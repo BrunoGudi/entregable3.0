@@ -12,7 +12,7 @@ def index(request):
 
 class ListadoEmpleados(ListView):
     model = Empleado
-    templane_name = 'empleados/listar_empleados.html'
+    templane_name = 'empleados/listar_empleado.html'
 
 class CrearEmpleado(CreateView):
     model = Empleado
@@ -22,7 +22,7 @@ class CrearEmpleado(CreateView):
 
 class EditarEmpleado(UpdateView):
     model = Empleado
-    template_name = 'empleados/editar_empleado'
+    template_name = 'empleados/editar_empleado.html'
     fields = 'nombre', 'apellido', 'salario'
 
     def get_success_url(self) -> str:
@@ -45,14 +45,14 @@ class ListadoGerentes(ListView):
 
 class CrearGerente(CreateView):
     model = Gerente
-    template_name = 'empleados/crear_gerente'
+    template_name = 'empleados/crear_gerente.html'
     success_url = reverse_lazy('listado_gerente')
-    fields = 'nombre', 'apellido', 'salario', 'departamento'
+    fields = ('nombre', 'apellido', 'salario', 'departamento')
 
 class EditarGerente(UpdateView):
     model = Gerente
-    template_name = 'empleados/editar_gerente'
-    fields = 'nombre', 'apellido', 'salario', 'departamento'
+    template_name = 'empleados/editar_gerente.html'
+    fields = ('nombre', 'apellido', 'salario', 'departamento')
 
     def get_success_url(self) -> str:
         return reverse_lazy('mostrar_gerente', kwargs={'pk':self.object.pk})
@@ -76,12 +76,12 @@ class CrearDesarrollador(CreateView):
     model = Desarrollador
     template_name = 'empleados/crear_desarrollador'
     success_url = reverse_lazy('listado_desarrollador')
-    fields = 'nombre', 'apellido', 'salario', 'lenguaje'
+    # fields = 'nombre', 'apellido', 'salario', 'lenguaje'
 
 class EditarDesarrollador(UpdateView):
     model = Desarrollador
     template_name = 'empleados/editar_desarrollador'
-    fields = 'nombre', 'apellido', 'salario', 'lenguaje'
+    # fields = 'nombre', 'apellido', 'salario', 'lenguaje'
 
     def get_success_url(self) -> str:
         return reverse_lazy('mostrar_desarrollador', kwargs={'pk':self.object.pk})
