@@ -29,7 +29,9 @@
         </nav> -->
 
         <div class="clearfix"></div>
+        
         <div id="content">
+            {% block main %}
             {% block content %}
             <article class="article">
                 <h2>Sobre nosotros</h2>
@@ -37,6 +39,7 @@
             </article>
             
             {% endblock %}
+            {% endblock main %}
         </div>
 
         <!-- <section id="content1">

@@ -12,7 +12,7 @@ def index(request):
 
 class ListadoEmpleados(ListView):
     model = Empleado
-    templane_name = 'empleados/listar_empleado.html'
+    template_name = 'empleados/listar_empleado.html'
 
 class CrearEmpleado(CreateView):
     model = Empleado
@@ -41,7 +41,7 @@ class MostrarEmpleado(DetailView):
 
 class ListadoGerentes(ListView):
     model = Gerente
-    templane_name = 'empleados/listar_gerente.html'
+    template_name = 'empleados/listar_gerente.html'
 
 class CrearGerente(CreateView):
     model = Gerente
@@ -70,7 +70,7 @@ class MostrarGerente(DetailView):
 
 class ListadoDesarrolladores(ListView):
     model = Desarrollador
-    templane_name = 'empleados/listar_desarrollador.html'
+    template_name = 'empleados/listar_desarrollador.html'
 
 class CrearDesarrollador(CreateView):
     model = Desarrollador

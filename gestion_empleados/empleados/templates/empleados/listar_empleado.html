@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'empleados/base.html' %}
 {% load static %}
 
 {% block main %}
@@ -12,15 +12,15 @@
             {% for empleado in object_list %}
                 <div class="card m-2" style="width: 18rem;" >
                     <div class="card-body">
-                    <h5 class="card-title">{{ empleado.nombre }} {{ empleado.apellido }}</h5>
-                    <p class="card-text">salario: {{ empleado.salario }}</p>
-                    <a href="{% url 'mostrar_empleado' empleado.id %}" class="btn btn-primary">Ver</a>
-                    {% if perms.empleado.change_movie %}
-                        <a href="{% url 'editar_empleado' empleado.id %}" class="btn btn-primary">Editar</a>
-                    {% endif %}
-                    {% if perms.empleado.delete_movie %}
-                        <a href="{% url 'eliminar_empleado' empleado.id %}" class="btn btn-primary">Borrar</a>
-                    {% endif %}
+                        <h5 class="card-title">{{ empleado.nombre }} {{ empleado.apellido }}</h5>
+                        <p class="card-text">salario: {{ empleado.salario }}</p>
+                        <a href="{% url 'empleados:mostrar_empleado' empleado.id %}" class="btn btn-primary">Ver</a>
+                        {% if perms.empleado.change_movie %}
+                            <a href="{% url 'editar_empleado' empleado.id %}" class="btn btn-primary">Editar</a>
+                        {% endif %}
+                        {% if perms.empleado.delete_movie %}
+                            <a href="{% url 'eliminar_empleado' empleado.id %}" class="btn btn-primary">Borrar</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

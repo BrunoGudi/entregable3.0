@@ -1,0 +1,28 @@
+{% extends 'empleados/base.html' %}
+{% load static %}
+
+{% block main %}
+    <div>        
+        {% if perms.empleado.add_movie %}
+            <a href="{% url 'listado_empleado' %}" class="m-2 btn btn-primary">Listar empleado</a>
+        {% endif %}
+
+    </div>
+    {% if empleado %}
+        <div class="row">
+            <div class="card m-2" style="width: 18rem;" >
+                <div class="card-body">
+                    <h5 class="card-title">{{ empleado.nombre }} {{ empleado.apellido }}</h5>
+                    <p class="card-text">salario: {{ empleado.salario }}</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="card" style="width: 18rem;" >
+            <div class="card-body">
+                <p class="card-text">No se encontraron datos.</p>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock main %}

@@ -1,6 +1,7 @@
 {% extends 'empleados/base.html' %}
+{% load static %}
 
-{% block content %}
+{% block main %}
     <h2>Editar Empleado</h2>
     <form method="POST" class="m-2">
         {% csrf_token %}

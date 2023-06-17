@@ -21,18 +21,14 @@ header{
   margin-top: auto;
   line-height: 50px;
 }
-nav{
-  background-color:  #adadad;
-  width: 100%;
-  height: 50px;
-  line-height: 30px;
+#content{
+  min-width: 500px;
 }
-
-nav ul li{
-  float: left;
-  list-style: none;
-  /* margin: 10px; */
-  margin-left: 1000px;
+.article {
+  height: 50px;
+  width: 30%;
+  text-align: center;
+  padding-bottom: 20px;
 }
 .clearfix{
   clear: both;
