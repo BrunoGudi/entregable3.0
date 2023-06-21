@@ -4,6 +4,8 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from empleados.models import Empleado,Gerente,Desarrollador
+from django.http import HttpRequest
+
 
 def index(request):
     return render(request, 'empleados/base.html')
@@ -23,15 +25,24 @@ class CrearEmpleado(CreateView):
 class EditarEmpleado(UpdateView):
     model = Empleado
     template_name = 'empleados/editar_empleado.html'
-    fields = 'nombre', 'apellido', 'salario'
+    fields = ['nombre', 'apellido', 'salario']
+    pk_url_kwarg = 'pk'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('mostrar_empleado', kwargs={'pk':self.object.pk})
+        request: HttpRequest = self.request
+        domain = request.META['HTTP_HOST']
+        return f"http://{domain}/empleados/mostrar-empleado/{self.object.pk}/"
+
 
 class EliminarEmpleado(DeleteView):
     model = Empleado
     template_name = 'empleados/eliminar_empleado.html'
-    success_url = reverse_lazy('listado_empleados')
+    pk_url_kwarg = 'pk'
+
+    def get_success_url(self) -> str:
+        request: HttpRequest = self.request
+        domain = request.META['HTTP_HOST']
+        return f"http://{domain}/empleados/mostrar-empleado/{self.object.pk}/"
 
 class MostrarEmpleado(DetailView):
     model = Empleado

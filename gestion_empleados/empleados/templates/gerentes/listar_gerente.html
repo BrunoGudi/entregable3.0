@@ -3,8 +3,8 @@
 
 {% block main %}
     <div>
-        {% if perms.empleado.add_movie %}
-            <a href="{% url 'crear_empleado' %}" class="m-2 btn btn-primary">Crear empleado</a>
+        {% if perms.gerente.add_movie %}
+            <a href="{% url 'crear_gerente' %}" class="m-2 btn btn-primary">Crear gerente</a>
         {% endif %}
     </div>
     {% if object_list %}
@@ -14,10 +14,11 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ empleado.nombre }} {{ empleado.apellido }}</h5>
                         <p class="card-text">salario: {{ empleado.salario }}</p>
-                        <a href="{% url 'empleados:mostrar_empleado' empleado.id %}" class="btn btn-primary">Ver</a>
-                            <a href="{% url 'empleados:editar_empleado' empleado.id %}" class="btn btn-primary">Editar</a>
+                        <p class="card-text">departamento: {{ gerente.departamento }}</p>
+                        <a href="{% url 'gerentes:mostrar_gerente' gerente.id %}" class="btn btn-primary">Ver</a>
+                            <a href="{% url 'gerentes:editar_gerente' gerente.id %}" class="btn btn-primary">Editar</a>
 
-                            <a href="{% url 'empleados:eliminar_empleado' empleado.id %}" class="btn btn-primary">Borrar</a>
+                            <a href="{% url 'gerentes:eliminar_gerente' gerente.id %}" class="btn btn-primary">Borrar</a>
                     </div>
                 </div>
             {% endfor %}

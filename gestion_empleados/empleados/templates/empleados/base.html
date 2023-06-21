@@ -10,23 +10,31 @@
 <body>
     <div id="container">
         <header>
-            <!-- <img class="imgNav" src="{% static '/img/personal1'}" alt="Descripción de la imagen"> -->
             <h2 class="TituloNav">Sistema de Gestión de Empleados</h2>
         </header>
-        <!-- <nav>
+        <div class="nav">
             <ul>
-                <li>
-                    <form action="{% url 'empleados:index' %}">
-                        <input type="submit" value="página principal" />
-                    </form>
+                <li><a href="{% url 'empleados:index' %}">Inicio</a></li>
+                <li><a href="">Empleados</a>
+                    <ul>
+                        <li><a href="{% url 'empleados:listado_empleados' %}">listar empleados</a></li>
+                        <li><a href="{% url 'empleados:crear_empleado' %}">crear empleado</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <form action="{% url 'empleados:search' %}">
-                        <input type="submit" value="buscar" />
-                    </form>
+                <li><a href="">Gerentes</a>
+                    <ul>
+                        <li><a href="">listar Gerentes</a></li>
+                        <li><a href="">crear Gerente</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Desarrolladores</a>
+                    <ul>
+                        <li><a href="">listar Desarrolladores</a></li>
+                        <li><a href="">crear Desarrollador</a></li>
+                    </ul>
                 </li>
             </ul>
-        </nav> -->
+        </div>
 
         <div class="clearfix"></div>
         
@@ -36,16 +44,17 @@
             <article class="article">
                 <h2>Sobre nosotros</h2>
                 <p>Esta es una pagina creada para cualquier empresa con el fin de poder llevar una lista de los empleados, gerentes y desarrolladores que dependen de su empresa</p>
+                <img class="img" src="{% static 'img/gestion-de-empleados.png' %}" alt="10px">
+            </article>
+            <article class="article">
+                <h2>Sobre nosotros</h2>
+                <p>Esta es una pagina creada para cualquier empresa con el fin de poder llevar una lista de los empleados, gerentes y desarrolladores que dependen de su empresa</p>
             </article>
             
             {% endblock %}
             {% endblock main %}
         </div>
 
-        <!-- <section id="content1">
-            
-
-        </section> -->
 
         <div class="clearfix"></div>
         
