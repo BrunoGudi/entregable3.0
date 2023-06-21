@@ -3,7 +3,7 @@
 
 {% block main %}
     <h2>Editar Empleado</h2>
-    <form method="POST" class="m-2">
+    <form action="{% url 'empleados:editar_empleado' empleado.id %}" method="POST" class="m-2">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Enviar" class="btn btn-primary">

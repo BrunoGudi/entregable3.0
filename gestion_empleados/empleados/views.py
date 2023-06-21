@@ -19,7 +19,7 @@ class ListadoEmpleados(ListView):
 class CrearEmpleado(CreateView):
     model = Empleado
     template_name = 'empleados/crear_empleado.html'
-    success_url = reverse_lazy('listado_empleados')
+    success_url = reverse_lazy('empleados:listado_empleados')
     fields = 'nombre', 'apellido', 'salario'
 
 class EditarEmpleado(UpdateView):
@@ -42,7 +42,7 @@ class EliminarEmpleado(DeleteView):
     def get_success_url(self) -> str:
         request: HttpRequest = self.request
         domain = request.META['HTTP_HOST']
-        return f"http://{domain}/empleados/mostrar-empleado/{self.object.pk}/"
+        return f"http://{domain}/empleados"
 
 class MostrarEmpleado(DetailView):
     model = Empleado
@@ -52,21 +52,26 @@ class MostrarEmpleado(DetailView):
 
 class ListadoGerentes(ListView):
     model = Gerente
-    template_name = 'empleados/listar_gerente.html'
+    template_name = 'gerentes/listar_gerente.html'
 
 class CrearGerente(CreateView):
     model = Gerente
-    template_name = 'empleados/crear_gerente.html'
-    success_url = reverse_lazy('listado_gerente')
+    template_name = 'gerentes/crear_gerente.html'
+    success_url = reverse_lazy('gerentes:listado_gerente')
     fields = ('nombre', 'apellido', 'salario', 'departamento')
+
 
 class EditarGerente(UpdateView):
     model = Gerente
     template_name = 'empleados/editar_gerente.html'
     fields = ('nombre', 'apellido', 'salario', 'departamento')
+    pk_url_kwarg = 'pk'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('mostrar_gerente', kwargs={'pk':self.object.pk})
+        request: HttpRequest = self.request
+        domain = request.META['HTTP_HOST']
+        return f"http://{domain}/gerente/mostrar-gerente/{self.object.pk}/"
+
 
 class EliminarGerente(DeleteView):
     model = Gerente
