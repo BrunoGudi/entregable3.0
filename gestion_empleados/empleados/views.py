@@ -3,12 +3,11 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from empleados.models import Empleado,Gerente,Desarrollador
 from django.http import HttpRequest
+from empleados.models import Empleado,Gerente,Desarrollador
+from empleados.forms import GerenteForm, DesarrolladorForm, BusquedaForm
 
-
-def index(request):
-    return render(request, 'empleados/base.html')
+# Create your views here.
 
 # clase Empleados
 
@@ -20,7 +19,7 @@ class CrearEmpleado(CreateView):
     model = Empleado
     template_name = 'empleados/crear_empleado.html'
     success_url = reverse_lazy('empleados:listado_empleados')
-    fields = 'nombre', 'apellido', 'salario'
+    fields = ['nombre', 'apellido', 'salario']
 
 class EditarEmpleado(UpdateView):
     model = Empleado
@@ -57,77 +56,89 @@ class ListadoGerentes(ListView):
 class CrearGerente(CreateView):
     model = Gerente
     template_name = 'gerentes/crear_gerente.html'
-    success_url = reverse_lazy('gerentes:listado_gerente')
-    fields = ('nombre', 'apellido', 'salario', 'departamento')
-
+    form_class = GerenteForm
+    success_url = reverse_lazy('empleados:listado_gerentes')
 
 class EditarGerente(UpdateView):
     model = Gerente
-    template_name = 'empleados/editar_gerente.html'
+    template_name = 'gerentes/editar_gerente.html'
     fields = ('nombre', 'apellido', 'salario', 'departamento')
     pk_url_kwarg = 'pk'
 
     def get_success_url(self) -> str:
-        request: HttpRequest = self.request
+        request = self.request
         domain = request.META['HTTP_HOST']
-        return f"http://{domain}/gerente/mostrar-gerente/{self.object.pk}/"
-
+        return f"http://{domain}/empleados/mostrar-gerente/{self.object.pk}/"
 
 class EliminarGerente(DeleteView):
     model = Gerente
-    template_name = 'empleados/eliminar_gerente.html'
-    success_url = reverse_lazy('listado_gerente')
+    template_name = 'gerentes/eliminar_gerente.html'
+    success_url = reverse_lazy('empleados:listado_gerentes')
 
 class MostrarGerente(DetailView):
     model = Gerente
-    template_name = 'empleados/mostrar_gerente.html'
+    template_name = 'gerentes/mostrar_gerente.html'
+
 
 #### clase Desarrollador
 
 class ListadoDesarrolladores(ListView):
     model = Desarrollador
-    template_name = 'empleados/listar_desarrollador.html'
+    template_name = 'desarrolladores/listar_desarrollador.html'
+
 
 class CrearDesarrollador(CreateView):
     model = Desarrollador
-    template_name = 'empleados/crear_desarrollador'
-    success_url = reverse_lazy('listado_desarrollador')
-    # fields = 'nombre', 'apellido', 'salario', 'lenguaje'
+    template_name = 'desarrolladores/crear_desarrollador.html'
+    form_class = DesarrolladorForm
+    success_url = reverse_lazy('empleados:listado_desarrolladores')
+
+
 
 class EditarDesarrollador(UpdateView):
     model = Desarrollador
-    template_name = 'empleados/editar_desarrollador'
-    # fields = 'nombre', 'apellido', 'salario', 'lenguaje'
+    template_name = 'desarrolladores/editar_desarrollador.html'
+    fields = ('nombre', 'apellido', 'salario', 'lenguaje')
+    pk_url_kwarg = 'pk'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('mostrar_desarrollador', kwargs={'pk':self.object.pk})
+        request = self.request
+        domain = request.META['HTTP_HOST']
+        return f"http://{domain}/empleados/mostrar-desarrollador/{self.object.pk}/"
+
 
 class EliminarDesarrollador(DeleteView):
     model = Desarrollador
-    template_name = 'empleados/eliminar_desarrolladoro.html'
-    success_url = reverse_lazy('listado_desarrollador')
+    template_name = 'desarrolladores/eliminar_desarrollador.html'
+    success_url = reverse_lazy('empleados:listado_desarrolladores')
+
 
 class MostrarDesarrollador(DetailView):
     model = Desarrollador
-    template_name = 'empleados/mostrar_desarrollador.html'
+    template_name = 'desarrolladores/mostrar_desarrollador.html'
 
 
-
-
-
+def index(request):
+    return render(request, 'empleados/base.html')
 
 
 def search(request):
-    term = request.GET.get('term')
+    form = BusquedaForm(request.GET)
     resultados = []
 
-    if term:
-        empleados = Empleado.objects.filter(nombre__icontains=term) | \
-                    Empleado.objects.filter(apellido__icontains=term)
+    if form.is_valid():
+        nombre = form.cleaned_data['nombre']
+        apellido = form.cleaned_data['apellido']
 
-        for empleado in empleados:
-            resultados.append(empleado)
+        empleados = Empleado.objects.filter(nombre__icontains=nombre, apellido__icontains=apellido)
+        gerentes = Gerente.objects.filter(nombre__icontains=nombre, apellido__icontains=apellido)
+        desarrolladores = Desarrollador.objects.filter(nombre__icontains=nombre, apellido__icontains=apellido)
 
-    return render(request, 'empleados/search_form.html', {'term': term, 'resultados': resultados})
+        resultados.extend(empleados)
+        resultados.extend(gerentes)
+        resultados.extend(desarrolladores)
 
-# Create your views here.
+    return render(request, 'empleados/search_form.html', {'form': form, 'resultados': resultados})
+
+
+

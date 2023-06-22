@@ -1,13 +1,29 @@
 {% extends 'empleados/base.html' %}
 
 {% block content %}
-    <h2>Búsqueda de Empleados</h2>
+
+<form method="get" action="{% url 'empleados:search' %}">
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h2>Resultados de la búsqueda:</h2>
+    <ul>
+    {% for resultado in resultados %}
+        <li>{{ resultado.nombre }} {{ resultado.apellido }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No se encontraron resultados.</p>
+{% endif %}
+    <!-- <h2>Búsqueda de Empleados</h2>
     <form action="{% url 'empleados:search' %}" method="get">
         <label for="term">Término de búsqueda:</label>
         <input type="text" id="term" name="term" required><br>
         <input type="submit" value="Buscar">
     </form>
     {% for empleado in resultados %}
-        <li>{{ empleado.obtener_nombre_completo }}</li>
-    {% endfor %}
+        <li>{{ empleado.obtener_nombre_completo }}</li> 
+    {% endfor %}-->
 {% endblock %}

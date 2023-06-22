@@ -15,6 +15,7 @@
         <div class="nav">
             <ul>
                 <li><a href="{% url 'empleados:index' %}">Inicio</a></li>
+                <li><a href="{% url 'empleados:search' %}">Buscar</a></li>
                 <li><a href="">Empleados</a>
                     <ul>
                         <li><a href="{% url 'empleados:listado_empleados' %}">listar empleados</a></li>
@@ -23,14 +24,14 @@
                 </li>
                 <li><a href="">Gerentes</a>
                     <ul>
-                        <li><a href="">listar Gerentes</a></li>
-                        <li><a href="">crear Gerente</a></li>
+                        <li><a href="{% url 'empleados:listado_gerentes' %}">listar Gerentes</a></li>
+                        <li><a href="{% url 'empleados:crear_gerente' %}">crear Gerente</a></li>
                     </ul>
                 </li>
                 <li><a href="">Desarrolladores</a>
                     <ul>
-                        <li><a href="">listar Desarrolladores</a></li>
-                        <li><a href="">crear Desarrollador</a></li>
+                        <li><a href="{% url 'empleados:listado_desarrolladores' %}">listar Desarrolladores</a></li>
+                        <li><a href="{% url 'empleados:crear_desarrollador' %}">crear Desarrollador</a></li>
                     </ul>
                 </li>
             </ul>

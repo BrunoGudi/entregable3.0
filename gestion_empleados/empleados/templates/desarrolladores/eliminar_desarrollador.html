@@ -1,0 +1,11 @@
+{% extends 'empleados/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<form method="POST" action="{% url 'empleados:eliminar_desarrollador' desarrollador.id %}" class="m-2">
+    {% csrf_token %}
+    <p>Desea eliminar el desarrollador?</p>
+    <input type="submit" value="Confirmar" class="btn btn-primary">
+</form>
+{% endblock main %}

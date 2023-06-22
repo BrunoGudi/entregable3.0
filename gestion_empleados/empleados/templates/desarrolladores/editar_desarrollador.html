@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block main %}
-    <h2>Editar Empleado</h2>
-    <form method="POST" class="m-2">
+    <h2>Editar Desarrollador</h2>
+    <form action="{% url 'empleados:editar_desarrollador' desarrollador.id %}" method="POST" class="m-2">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Enviar" class="btn btn-primary">

@@ -1,0 +1,29 @@
+{% extends 'empleados/base.html' %}
+{% load static %}
+
+{% block main %}
+<div>        
+    {% if perms.desarrollador.add_movie %}
+        <a href="{% url 'listado_desarrollador' %}" class="m-2 btn btn-primary">Listar desarrollador</a>
+    {% endif %}
+
+</div>
+{% if desarrollador %}
+    <div class="row">
+        <div class="card m-2" style="width: 18rem;" >
+            <div class="card-body">
+                <h5 class="card-title">Nombre: {{ desarrollador.nombre }} </h5>
+                <h5 class="card-title">Apellido: {{ desarrollador.apellido }}</h5>
+                <p class="card-text">Salario: {{ desarrollador.salario }}</p>
+                <p class="card-text">Lenguaje: {{ desarrollador.lenguaje }}</p>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="card" style="width: 18rem;" >
+        <div class="card-body">
+            <p class="card-text">No se encontraron datos.</p>
+        </div>
+    </div>
+{% endif %}
+{% endblock main %}
