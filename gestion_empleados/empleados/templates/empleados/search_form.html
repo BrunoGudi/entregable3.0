@@ -17,13 +17,5 @@
 {% else %}
     <p>No se encontraron resultados.</p>
 {% endif %}
-    <!-- <h2>Búsqueda de Empleados</h2>
-    <form action="{% url 'empleados:search' %}" method="get">
-        <label for="term">Término de búsqueda:</label>
-        <input type="text" id="term" name="term" required><br>
-        <input type="submit" value="Buscar">
-    </form>
-    {% for empleado in resultados %}
-        <li>{{ empleado.obtener_nombre_completo }}</li> 
-    {% endfor %}-->
+
 {% endblock %}
